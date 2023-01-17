@@ -15,18 +15,17 @@ public class Gun : MonoBehaviour
     void Update()
     {
         
+       // if (Input.GetButton("Fire1") && Time.time >= nextTimetoFire)
+        //{
+            //nextTimetoFire = Time.time + 1f / fireRate;
+            //Shoot();
+        //}
 
-        if (Input.GetButton("Fire1") && Time.time >= nextTimetoFire)
-        {
-            nextTimetoFire = Time.time + 1f / fireRate;
-            Shoot();
-        }
-
-        if (Input.GetButton("Fire2"))
-        {
+        //if (Input.GetButton("Fire2"))
+        //{
            
-            rb.AddForce(0f, 10f, 0f, ForceMode.Force);
-        }
+            //rb.AddForce(0f, 5f, 0f, ForceMode.Force);
+        //}
     }
 
     void Shoot()
@@ -42,5 +41,21 @@ public class Gun : MonoBehaviour
                 target.TakeDamage(damage);
             }
         }
+    }
+
+    void OnFire1()
+    {
+        if (Time.time >= nextTimetoFire)
+        {
+            nextTimetoFire = Time.time + 1f / fireRate;
+            Shoot();
+        }
+    }
+
+    void OnFire2()
+    {
+        Debug.Log("Entró");
+        rb.AddForce(0f, 5f, 0f, ForceMode.Impulse);
+        
     }
 }
