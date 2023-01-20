@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    public float m_ViewDistance = 25f;
+    public float m_ViewDistance = 90f;
     public Transform m_player;
     public float m_Sensitivity = 200f;
     float m_Rotation = 0f;
