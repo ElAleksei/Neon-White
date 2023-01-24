@@ -12,4 +12,5 @@ public class SO_Weapons : ScriptableObject
     public int nextTimetoFire;
     public int MaxAmmo;
     public int CurrentAmmo;
+    public bool Discard;
 }

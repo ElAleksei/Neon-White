@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    //public SO_Weapons = 
     public float damage = 10f;
     public float range = 100f;
     public Camera FPScam;
     public float fireRate = 15f;
+    public bool Discard = false;
 
     public Rigidbody rb;
 
@@ -54,8 +56,15 @@ public class Gun : MonoBehaviour
 
     void OnFire2()
     {
-        Debug.Log("Entró");
-        rb.AddForce(0f, 5f, 0f, ForceMode.Impulse);
+        Discard = true;
+
+        if(Discard == true)
+        {
+            Debug.Log("Entró");
+            rb.AddForce(0f, 5f, 0f, ForceMode.Impulse);
+
+        }
+        
         
     }
 }
