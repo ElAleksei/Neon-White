@@ -41,13 +41,15 @@ public class Gun : MonoBehaviour
             nextTimetoFire = Time.time + 1f / fireRate;
             Shoot();
         }
+
+        //rb.AddForce(transform.forward * 500f, ForceMode.Impulse);
     }
 
     void OnFire2()
     {
         if (m_AlreadyFire2 == false)
         {
-            rb.AddForce(0f, 5f, 0f, ForceMode.Impulse);
+            rb.AddForce(0f, 8f, 0f, ForceMode.Impulse);
             m_AlreadyFire2 = true;
         }
         
