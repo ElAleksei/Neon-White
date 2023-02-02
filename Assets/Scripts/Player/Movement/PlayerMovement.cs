@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     //Movement variables
     public float m_Speed = 5f;
     Vector2 m_MoveInput;
-    Rigidbody m_Rigidbody;
+    public Rigidbody m_Rigidbody;
 
     //Jumping variables
     public float m_JumpSpeed = 5f;
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(m_Rigidbody.velocity.y);
         Walk();
     
     }
