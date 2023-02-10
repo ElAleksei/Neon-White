@@ -49,7 +49,7 @@ public class Gun : MonoBehaviour
 
     void OnFire2()
     {
-<<<<<<< HEAD
+
         Discard = true;
 
         if(Discard == true)
@@ -59,13 +59,13 @@ public class Gun : MonoBehaviour
 
         }
         
-=======
+
         if (m_AlreadyFire2 == false)
         {
             rb.AddForce(0f, 8f, 0f, ForceMode.Impulse);
             m_AlreadyFire2 = true;
         }
->>>>>>> Alek
+
         
     }
 }
