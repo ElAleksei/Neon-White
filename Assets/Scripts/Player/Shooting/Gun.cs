@@ -49,6 +49,11 @@ public class Gun : MonoBehaviour
     {
         if (m_AlreadyFire2 == false)
         {
+            if(rb.velocity.y < 0f)
+            {
+                rb.velocity = new Vector3(rb.velocity.x,0f,rb.velocity.z);
+            }
+
             rb.AddForce(0f, 8f, 0f, ForceMode.Impulse);
             m_AlreadyFire2 = true;
         }
