@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 357449144}
   - component: {fileID: 357449145}
   - component: {fileID: 357449146}
-  - component: {fileID: 357449147}
+  - component: {fileID: 357449148}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Speed: 5
   m_JumpSpeed: 5
---- !u!114 &357449147
+--- !u!114 &357449148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1010,15 +1010,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 357449139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6595aa3eb324143aea37ce3dda8243, type: 3}
+  m_Script: {fileID: 11500000, guid: 06ced86cc67491c4cbaf071211d55642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: {fileID: 357449143}
+  PlayerCam: {fileID: 357449143}
+  rb: {fileID: 357449144}
+  DashForce: 100
+  DashUpwardForce: 0
+  DashDuration: 0.25
+  DashCooldown: 1.5
   damage: 10
   range: 100
   FPScam: {fileID: 963194227}
   fireRate: 15
   Discard: 0
-  rb: {fileID: 357449144}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

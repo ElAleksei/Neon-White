@@ -1,13 +1,14 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class UZI : MonoBehaviour
 {
     //public SO_Weapons = 
     public float damage = 10f;
     public float range = 100f;
     public Camera FPScam;
-    public float fireRate = 15f;
+    public float fireRate = 30f;
     public bool Discard = false;
 
     public Rigidbody rb;
@@ -18,7 +19,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     void Shoot()
@@ -52,20 +53,20 @@ public class Gun : MonoBehaviour
 
         Discard = true;
 
-        if(Discard == true)
+        if (Discard == true)
         {
             Debug.Log("Entró");
-            rb.AddForce(0f, 8f, 0f, ForceMode.Impulse);
+            rb.AddForce(0f, -8f, 0f, ForceMode.Impulse);
 
         }
-        
+
 
         if (m_AlreadyFire2 == false)
         {
-            rb.AddForce(0f, 8f, 0f, ForceMode.Impulse);
+            rb.AddForce(0f, -8f, 0f, ForceMode.Impulse);
             m_AlreadyFire2 = true;
         }
 
-        
+
     }
 }
