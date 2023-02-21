@@ -16,10 +16,6 @@ public class Gun : MonoBehaviour
 
     bool m_AlreadyFire2 = false;
 
-    void Update()
-    {
-        
-    }
 
     void Shoot()
     {
@@ -48,19 +44,9 @@ public class Gun : MonoBehaviour
     }
 
     void OnFire2()
-    {
+    {       
 
-        Discard = true;
-
-        if(Discard == true)
-        {
-            Debug.Log("Entró");
-            rb.AddForce(0f, 5f, 0f, ForceMode.Impulse);
-
-        }
-        
-
-        if (m_AlreadyFire2 == false)
+        if (m_AlreadyFire2 == false & WeaponManager.m_Card1Image.sprite.name == "Elevate Card")
         {
             if(rb.velocity.y < 0f)
             {
@@ -71,6 +57,9 @@ public class Gun : MonoBehaviour
             m_AlreadyFire2 = true;
         }
 
-        
+        else
+        {
+            Debug.Log("Not");
+        }
     }
 }

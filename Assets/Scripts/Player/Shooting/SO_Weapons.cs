@@ -8,8 +8,8 @@ public class SO_Weapons : ScriptableObject
 {
     public int damage;
     public float range;
-    public int fireRate;
-    public int nextTimetoFire;
+    public float fireRate;
+    public float nextTimetoFire;
     public int MaxAmmo;
     public int CurrentAmmo;
     public bool Discard;

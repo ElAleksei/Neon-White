@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float m_JumpSpeed = 5f;
     bool m_IsOnGround = true;
 
+    public WeaponDisplay m_WeaponDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,12 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         m_MoveInput = value.Get<Vector2>();
+    }
+
+    void OnChangeCard()
+    {
+        WeaponManager.Change();
+        m_WeaponDisplay.ChangeCard();
     }
 
     
