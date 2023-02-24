@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     //Movement variables
     public float m_Speed = 5f;
     Vector2 m_MoveInput;
-    Rigidbody m_Rigidbody;
+    public Rigidbody m_Rigidbody;
 
     //Jumping variables
     public float m_JumpSpeed = 5f;
     bool m_IsOnGround = true;
+
+    public WeaponDisplay m_WeaponDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(m_Rigidbody.velocity.y);
         Walk();
     
     }
@@ -58,6 +60,12 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         m_MoveInput = value.Get<Vector2>();
+    }
+
+    void OnChangeCard()
+    {
+        WeaponManager.Change();
+        m_WeaponDisplay.ChangeCard();
     }
 
     
