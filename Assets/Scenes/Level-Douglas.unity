@@ -1010,14 +1010,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 357449139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6595aa3eb324143aea37ce3dda8243, type: 3}
+  m_Script: {fileID: 11500000, guid: 28817b291ccfc7c4c8eaa4dea009f1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
   FPScam: {fileID: 963194227}
-  fireRate: 15
+  fireRate: 1
   Discard: 0
+  ExplosionDistance: 7
+  RocketJumpPower: 10
   rb: {fileID: 357449144}
 --- !u!1 &705507993
 GameObject:
