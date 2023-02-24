@@ -11,6 +11,9 @@ public class Rocket : MonoBehaviour
     public float fireRate = 15f;
     public bool Discard = false;
 
+    public float ExplosionDistance = 2f;
+    public float RocketJumpPower;
+
     public Rigidbody rb;
 
     private float nextTimetoFire = 0f;
@@ -30,10 +33,32 @@ public class Rocket : MonoBehaviour
             Debug.Log(hit.transform.name);
 
             Target target = hit.transform.GetComponent<Target>();
+
+
             if (target != null)
             {
                 target.TakeDamage(damage);
             }
+
+            else if (hit.transform.tag == "Ground")
+            {
+                Debug.Log("Entró al tag");
+
+                Vector3 distancedir = hit.transform.position - transform.position;
+
+                float distance = distancedir.magnitude;
+
+                Debug.Log(distance);
+
+               if (distance <= ExplosionDistance)
+                {
+                    Debug.Log("RocketJump!");
+                    rb.AddForce(transform.up * RocketJumpPower, ForceMode.Impulse);
+                }
+                
+            }
+
+            
         }
     }
 
@@ -45,7 +70,6 @@ public class Rocket : MonoBehaviour
             Shoot();
         }
 
-        //rb.AddForce(transform.forward * 500f, ForceMode.Impulse);
     }
 
     void OnFire2()
