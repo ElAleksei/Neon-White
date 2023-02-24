@@ -104,5 +104,24 @@ public class WeaponManager : MonoBehaviour
         {
             
         }
+        
+    }
+
+    public static void NewCard(string Weapon)
+    {
+        if (m_CurrentCard == m_Card1 & m_Card2 == null)
+        {
+            
+        }
+
+        else if (m_CurrentCard == m_Card2 & m_Card1 == null)
+        {
+
+        }
+
+        else
+        {
+
+        }
     }
 }
