@@ -18,6 +18,8 @@ public class WeaponDisplay : MonoBehaviour
     public Camera FPScam;
     public Rigidbody rb;
 
+    public Component CurrentScript;
+
     Image CurrentCard;
 
     // Start is called before the first frame update
@@ -112,6 +114,10 @@ public class WeaponDisplay : MonoBehaviour
             }
         }
         
+        else if(CurrentCard.sprite.name == "Godspeed Card")
+        {
+            CurrentScript = Resources.Load("RifleCopy") as Component;            
+        }
 
         else
         {

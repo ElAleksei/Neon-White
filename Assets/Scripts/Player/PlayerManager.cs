@@ -10,10 +10,15 @@ public class PlayerManager : MonoBehaviour
     public GameObject m_Life2;
     public GameObject m_Life3;
 
+    public Image m_DamageOverlay;
+    public float m_OverlayDuration;
+    public float m_OverlayDelay;
+    private float m_Timer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_DamageOverlay.color = new Color(m_DamageOverlay.color.r, m_DamageOverlay.color.g, m_DamageOverlay.color.b, 0);
     }
 
     // Update is called once per frame
@@ -24,13 +29,27 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (m_DamageOverlay.color.a > 0)
+        {
+            m_Timer += Time.deltaTime;
+
+            if (m_Timer > m_OverlayDuration)
+            {
+                float TempAlpha = m_DamageOverlay.color.a;
+                TempAlpha -= Time.deltaTime * m_OverlayDelay;
+                m_DamageOverlay.color = new Color(m_DamageOverlay.color.r, m_DamageOverlay.color.g, m_DamageOverlay.color.b, TempAlpha);
+            }
+        }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
+        m_Timer = 0;
         if (collision.gameObject.tag == "Bullet")
         {
             m_PlayerLife -= 1;
-            ChangeLife();
+            ChangeLife();    
+            m_DamageOverlay.color = new Color(m_DamageOverlay.color.r, m_DamageOverlay.color.g, m_DamageOverlay.color.b, 1);
         }
     }
 

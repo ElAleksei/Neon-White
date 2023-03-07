@@ -30,13 +30,20 @@ public class CardPrefabs : MonoBehaviour
         {   
             if(m_CardName == "Katana Card 3 (Instance)")
             {
-                WeaponManager.NewCard(gameObject.name);
+                //WeaponManager.NewCard(gameObject.name);
                 m_katana.CurrentAmmo = m_katana.MaxAmmo;                
             }
 
             if (m_CardName == "Elevate Card (Instance)")
             {
+                //WeaponManager.NewCard(gameObject.name);
                 m_gun.CurrentAmmo = m_gun.MaxAmmo;
+            }
+
+            if (m_CardName == "Godspeed Card (Instance)")
+            {
+                //WeaponManager.NewCard(gameObject.name);
+                m_rifle.CurrentAmmo = m_rifle.MaxAmmo;
             }
 
             Destroy(gameObject);
