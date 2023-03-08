@@ -30,7 +30,8 @@ public class CardPrefabs : MonoBehaviour
         {   
             if(m_CardName == "Katana Card 3 (Instance)")
             {
-                m_katana.CurrentAmmo = m_katana.MaxAmmo;
+                WeaponManager.NewCard(gameObject.name);
+                m_katana.CurrentAmmo = m_katana.MaxAmmo;                
             }
 
             if (m_CardName == "Elevate Card (Instance)")
