@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardPrefabs : MonoBehaviour
 {
     string m_CardName;
+    public WeaponDisplay m_WeaponDisplay;
 
     public SO_Weapons m_katana;
     public SO_Weapons m_gun;
@@ -38,6 +39,7 @@ public class CardPrefabs : MonoBehaviour
             {
                 //WeaponManager.NewCard(gameObject.name);
                 m_gun.CurrentAmmo = m_gun.MaxAmmo;
+                m_WeaponDisplay.m_Discard = false;
             }
 
             if (m_CardName == "Godspeed Card (Instance)")

@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
+    [Header("Life")]
     public int m_PlayerLife;
     public GameObject m_Life1;
     public GameObject m_Life2;
     public GameObject m_Life3;
 
+    [Header("Damage UI")]
     public Image m_DamageOverlay;
     public float m_OverlayDuration;
     public float m_OverlayDelay;

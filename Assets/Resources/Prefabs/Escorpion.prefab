@@ -1806,6 +1806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_player: {fileID: 0}
+  m_Animation: {fileID: 6083727491310040830}
   m_layermask:
     serializedVersion: 2
     m_Bits: 64
