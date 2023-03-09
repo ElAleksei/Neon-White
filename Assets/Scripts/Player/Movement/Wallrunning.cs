@@ -8,7 +8,10 @@ public class Wallrunning : MonoBehaviour
     public LayerMask IsWall;
     public float wallRunForce;
     public float maxWallRunTimer;
+    public float WalljumpUpForce;
+    public float WallJumpSideForce;
     private float wallRunTimer;
+    
 
     private float horizontalInput;
     private float verticalInput;
@@ -22,6 +25,9 @@ public class Wallrunning : MonoBehaviour
     private bool LeftWall;
     private bool RightWall;
     private bool Wallrun;
+    private bool exitingWall;
+    public float exitWallTime;
+    private float exitWallTimer;
 
     public Transform orientation;
     private PlayerMovement pm;
@@ -54,11 +60,34 @@ public class Wallrunning : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if((LeftWall || RightWall) && verticalInput > 0 && AboveGround())
+        if((LeftWall || RightWall) && verticalInput > 0 && AboveGround() && !exitingWall)
         {
             if (!Wallrun)
             {
                 StartWallRun();
+
+                if (Input.GetKeyDown("Space"))
+                {
+                    WallJump();
+                }
+            }
+
+            else if (exitingWall)
+            {
+                if (Wallrun)
+                {
+                    StopWallRun();
+                }
+
+                if (exitWallTime > 0)
+                {
+                    exitWallTimer -= Time.deltaTime;
+                }
+
+                if (exitWallTimer <= 0)
+                {
+                    exitingWall = false;
+                }
             }
 
             else
@@ -69,6 +98,7 @@ public class Wallrunning : MonoBehaviour
                 }
                 
             }
+            
         }
     }
 
@@ -97,7 +127,18 @@ public class Wallrunning : MonoBehaviour
         Vector3 WallForward = Vector3.Cross(WallNomal, transform.up);
 
         if ((orientation.forward - WallForward).magnitude > (orientation.forward - -WallForward).magnitude)
+        {
             WallForward = -WallForward;
+        }
+        
+        if (!(LeftWall && horizontalInput > 0) && !(RightWall && horizontalInput < 0))
+        {
+            rb.AddForce(-WallNomal * 100, ForceMode.Force);
+        }
+
+        
+        
+        
     }
 
     private void StopWallRun()
@@ -106,6 +147,19 @@ public class Wallrunning : MonoBehaviour
         pm.WallRunSpeed = 0;
     }
 
+    private void WallJump()
+    {
+        exitingWall = true;
+        exitWallTimer = exitWallTime;
+
+        Vector3 WallNomal = RightWall ? RightWallHit.normal : LeftWallHit.normal;
+
+        Vector3 ForcetoApply = transform.up * WalljumpUpForce + WallNomal * WallJumpSideForce;
+
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(ForcetoApply, ForceMode.Impulse);
+
+    }
 
 
 }

@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
 
     public WeaponDisplay m_WeaponDisplay;
 
+    //Grapple Variables
+
+    public bool ActiveGrapple;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
     void OnWallrun()
     {
         
+    }
+
+    void OnGrapple()
+    {
+
     }
     
 }
