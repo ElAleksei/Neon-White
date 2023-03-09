@@ -23,7 +23,7 @@ public class WeaponManager : MonoBehaviour
     public SO_Weapons m_katana;
     public SO_Weapons m_gun;
     public SO_Weapons m_rifle;
-    public SO_Weapons m_sniper;
+    public SO_Weapons m_rocket;
     public SO_Weapons m_uzi;
 
     void Start()
@@ -58,6 +58,30 @@ public class WeaponManager : MonoBehaviour
         m_gun.MaxAmmo = 20;
         m_gun.CurrentAmmo = 20;
         m_gun.Discard = false;
+
+        m_rifle.damage = 20;
+        m_rifle.range = 20;
+        m_rifle.fireRate = 10;
+        m_rifle.nextTimetoFire = 1;
+        m_rifle.MaxAmmo = 30;
+        m_rifle.CurrentAmmo = 30;
+        m_rifle.Discard = false;
+
+        m_rocket.damage = 50;
+        m_rocket.range = 10;
+        m_rocket.fireRate = 1;
+        m_rocket.nextTimetoFire = 1;
+        m_rocket.MaxAmmo = 20;
+        m_rocket.CurrentAmmo = 20;
+        m_rocket.Discard = false;
+
+        m_uzi.damage = 10;
+        m_uzi.range = 20;
+        m_uzi.fireRate = 30;
+        m_uzi.nextTimetoFire = 0;
+        m_uzi.MaxAmmo = 30;
+        m_uzi.CurrentAmmo = 30;
+        m_uzi.Discard = false;
     }
 
 

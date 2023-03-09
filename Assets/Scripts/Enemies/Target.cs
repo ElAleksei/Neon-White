@@ -4,6 +4,11 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public float health = 50f;
+    GameManager m_Manager;
+    private void Awake()
+    {
+        m_Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
     public void TakeDamage(float amount)
     {
@@ -17,6 +22,7 @@ public class Target : MonoBehaviour
 
     void Die()
     {
+        m_Manager.AddEnemyCount();
         Destroy(gameObject);
     }
 }

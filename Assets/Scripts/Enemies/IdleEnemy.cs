@@ -6,6 +6,7 @@ public class IdleEnemy : MonoBehaviour
 {
 
     public Transform m_player;
+    public Animator m_Animation;
     public LayerMask m_layermask;
 
     public float m_Cooldown;
@@ -25,10 +26,17 @@ public class IdleEnemy : MonoBehaviour
         m_PlayerInAttackRange = Physics.CheckSphere(transform.position, m_attackRange, m_layermask);
 
         if (m_PlayerInAttackRange) Attack();
+
+        else
+        {
+            m_Animation.SetFloat("Blend", 0f);
+        }
     }
 
     private void Attack()
     {
+        m_Animation.SetFloat("Blend",1f);
+
         transform.LookAt(m_player);
 
         if (!m_AttackOn)

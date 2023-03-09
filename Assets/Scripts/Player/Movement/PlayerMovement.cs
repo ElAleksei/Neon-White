@@ -8,35 +8,27 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-
+    [Header("Movement")]
     //Movement variables
     public float m_Speed = 5f;
     Vector2 m_MoveInput;
     public Rigidbody m_Rigidbody;
-
     //Jumping variables
     public float m_JumpSpeed = 5f;
     bool m_IsOnGround = true;
 
-    //Slide variables
-
-    private Slide m_Slide;
-
-    //Wallrun Variables
-
-    public float WallRunSpeed;
-
     public WeaponDisplay m_WeaponDisplay;
 
-    //Grapple Variables
+    [Header("Sound")]
+    public AudioSource [] m_AudioSource;
 
-    public bool ActiveGrapple;
+    [Header("Analitics")]
+    public AnaliticManager m_AnaliticManager;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Slide = GetComponent<Slide>();
     }
 
     // Update is called once per frame
@@ -58,7 +50,9 @@ public class PlayerMovement : MonoBehaviour
         if (m_IsOnGround)
         {
             m_Rigidbody.AddForce(new Vector3(0, m_JumpSpeed, 0), ForceMode.Impulse);
+            m_AudioSource[0].Play();
             m_IsOnGround = false;
+            m_AnaliticManager.AddJump();
         }       
     }
 
@@ -81,19 +75,5 @@ public class PlayerMovement : MonoBehaviour
         m_WeaponDisplay.ChangeCard();
     }
 
-    void OnSlide()
-    {
- 
-    }
-
-    void OnWallrun()
-    {
-        
-    }
-
-    void OnGrapple()
-    {
-
-    }
     
 }
