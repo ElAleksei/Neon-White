@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     //Jumping variables
     public float m_JumpSpeed = 5f;
     bool m_IsOnGround = true;
+    //WallRunVariables
+    public float WallRunSpeed;
 
     public WeaponDisplay m_WeaponDisplay;
 
