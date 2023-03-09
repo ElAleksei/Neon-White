@@ -39,7 +39,11 @@ public class Rocket : MonoBehaviour
     public bool freeze;
     public bool ActiveGrapple;
 
+    public float GrapplingSpeed = 10;
+
     private bool enableMovement;
+
+    public float MinDistance = 1f;
 
     private void Start()
     {
@@ -63,6 +67,23 @@ public class Rocket : MonoBehaviour
         {
             pm.m_Speed = 10f;
         }
+
+        if (Grappling)
+        {
+            Vector3 DirectionMagnitude = GrapPoint - transform.position;
+
+            Vector3 Direction = DirectionMagnitude.normalized;
+
+            transform.position += Direction * GrapplingSpeed * Time.deltaTime;
+
+            Debug.Log(DirectionMagnitude.magnitude);
+
+            if (DirectionMagnitude.magnitude <= MinDistance)
+            {
+                EndGrapple();
+            }
+        }
+
     }
 
     private void LateUpdate()
@@ -143,47 +164,29 @@ public class Rocket : MonoBehaviour
     void StartGrapple()
     {
         if (GrapCoolDownTimer > 0) return;
-        
-        Grappling = true;
-
-        freeze = true;
-
-        
 
         RaycastHit hit;
 
         if (Physics.Raycast(cam.position, cam.forward, out hit, MaxGrapDistance, Grappable))
         {
+            Grappling = true;
+
+            freeze = true;
+
             GrapPoint = hit.point;
 
-            Invoke(nameof(Grapple), GrapDelay);
-        }
-        else
-        {
-            GrapPoint = cam.position + cam.forward * MaxGrapDistance;
-            Invoke(nameof(EndGrapple), GrapDelay);
+            lr.enabled = true;
+            lr.SetPosition(1, GrapPoint);
+
         }
 
-        lr.enabled = true;
-        lr.SetPosition(1, GrapPoint);
+        
 
     }
 
     void Grapple()
     {
-        freeze = false;
-        rb.drag = 0f;
-
-        Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-
-        float grapplePointRelativeYPos = GrapPoint.y - lowestPoint.y;
-        float highestPointOnArc = grapplePointRelativeYPos + OvershootYaxis;
-
-        if (grapplePointRelativeYPos < 0) highestPointOnArc = OvershootYaxis;
-
-        JumpToPosition(GrapPoint, highestPointOnArc);
-
-        Invoke(nameof(EndGrapple), 1f);
+       
     }
 
     void EndGrapple()
@@ -198,32 +201,5 @@ public class Rocket : MonoBehaviour
         lr.enabled = false;
     }
 
-    public void JumpToPosition(Vector3 TargetPosition, float TrajectoryHeight)
-    {
-        ActiveGrapple = true;
-        rb.velocity = CalculateJumpVelocity(transform.position, TargetPosition, TrajectoryHeight);
-        VelocityToSet = CalculateJumpVelocity(transform.position, TargetPosition, TrajectoryHeight);
-        Invoke(nameof(SetVelocity), 0.1f);
-    }
-
-    private Vector3 VelocityToSet;
-
-    private void SetVelocity()
-    {
-        freeze = false;
-        rb.velocity = VelocityToSet;
-    }
-
-    public Vector3 CalculateJumpVelocity(Vector3 Startpoint, Vector3 Endpoint, float TrajectoryHeight)
-    {
-        float gravity = Physics.gravity.y;
-        float displacementY = Endpoint.y - Startpoint.y;
-
-        Vector3 DisplacementXZ = new Vector3(Endpoint.x - Startpoint.x, 0f, Endpoint.z - Startpoint.z);
-
-        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * TrajectoryHeight);
-        Vector3 velocityXZ = DisplacementXZ / (Mathf.Sqrt(-2 * TrajectoryHeight / gravity) + Mathf.Sqrt(2 * (displacementY - TrajectoryHeight) / gravity));
-
-        return velocityXZ + velocityY;
-    }
+   
 }
