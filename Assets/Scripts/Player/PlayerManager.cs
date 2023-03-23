@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
+    public GameObject m_Player;
+
     [Header("Life")]
     public int m_PlayerLife;
     public GameObject m_Life1;
@@ -41,6 +44,22 @@ public class PlayerManager : MonoBehaviour
                 TempAlpha -= Time.deltaTime * m_OverlayDelay;
                 m_DamageOverlay.color = new Color(m_DamageOverlay.color.r, m_DamageOverlay.color.g, m_DamageOverlay.color.b, TempAlpha);
             }
+        }
+
+        if(m_Player.transform.position.y <= -10 && SceneManager.GetActiveScene().name == "Scene_Alek")
+        {
+            m_PlayerLife--;
+            ChangeLife();
+            m_DamageOverlay.color = new Color(m_DamageOverlay.color.r, m_DamageOverlay.color.g, m_DamageOverlay.color.b, 1);
+            m_Player.transform.position = new Vector3(-0.08092921f, 1.2f, -13.21809f);
+        }
+
+        if (m_Player.transform.position.y <= -10 && SceneManager.GetActiveScene().name == "Scene_Douglas")
+        {
+            m_PlayerLife--;
+            ChangeLife();
+            m_DamageOverlay.color = new Color(m_DamageOverlay.color.r, m_DamageOverlay.color.g, m_DamageOverlay.color.b, 1);
+            m_Player.transform.position = new Vector3(0, 1.2f, -7.77f);
         }
 
     }

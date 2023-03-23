@@ -14,7 +14,16 @@ public class LevelManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Player")
+
+        if (collision.gameObject.name == "Player" && SceneManager.GetActiveScene().name == "Scene_Douglas")
+        {
+            if (m_GameManager.m_EnemyCount >= 3)
+            {
+                SceneManager.LoadScene("Scene_Alek");
+            }
+        }
+
+        if (collision.gameObject.name == "Player" && SceneManager.GetActiveScene().name == "Scene_Alek")
         {
             if (m_GameManager.m_EnemyCount >= 3)
             {
