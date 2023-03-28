@@ -31,7 +31,9 @@ public class PlayerManager : MonoBehaviour
     {
         if(m_PlayerLife <= 0)
         {
-            Destroy(gameObject);
+            Cursor.lockState = CursorLockMode.Confined;
+            AnaliticManager.Instance.Amimir();
+            SceneManager.LoadScene("Title");
         }
 
         if (m_DamageOverlay.color.a > 0)
