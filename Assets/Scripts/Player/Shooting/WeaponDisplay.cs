@@ -25,8 +25,8 @@ public class WeaponDisplay : MonoBehaviour
 
     Image CurrentCard;
 
-    [Header("Analitics")]
-    public AnaliticManager m_AnaliticManager;
+    //[Header("Analitics")]
+    //public AnaliticManager m_AnaliticManager;
 
     [Header("Sound")]
     public PlayerMovement m_PlayerMovement;
@@ -48,6 +48,7 @@ public class WeaponDisplay : MonoBehaviour
 
     private void Update()
     {
+        //m_AnaliticManager = GameObject.Find("AnaliticsManager").GetComponent<AnaliticManager>();
         m_damage = weapon.damage;
         m_range = weapon.range;
         m_fireRate = weapon.fireRate;
@@ -70,6 +71,8 @@ public class WeaponDisplay : MonoBehaviour
             weapon = Resources.Load("Weapon_Katana") as SO_Weapons;
             ChangeStats();
         }
+
+        AnaliticManager.Instance.AddChangeCard();
     }
 
     void Shoot()
@@ -78,7 +81,7 @@ public class WeaponDisplay : MonoBehaviour
         {
             RaycastHit hit;
             m_PlayerMovement.m_AudioSource[1].Play();
-            m_AnaliticManager.AddShoot();
+            AnaliticManager.Instance.AddShoot();
 
             if (Physics.Raycast(FPScam.transform.position, FPScam.transform.forward, out hit, m_range))
             {
@@ -111,7 +114,7 @@ public class WeaponDisplay : MonoBehaviour
 
     void OnFire2()
     {
-        m_AnaliticManager.AddSpecialShoot();
+        AnaliticManager.Instance.AddSpecialShoot();
 
         if(CurrentCard.sprite.name == "Elevate Card")
         {

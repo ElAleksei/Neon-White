@@ -67,13 +67,13 @@ public class WeaponManager : MonoBehaviour
         m_rifle.CurrentAmmo = 30;
         m_rifle.Discard = false;
 
-        m_rocket.damage = 50;
-        m_rocket.range = 10;
-        m_rocket.fireRate = 1;
-        m_rocket.nextTimetoFire = 1;
-        m_rocket.MaxAmmo = 20;
-        m_rocket.CurrentAmmo = 20;
-        m_rocket.Discard = false;
+        //m_rocket.damage = 50;
+        //m_rocket.range = 10;
+        //m_rocket.fireRate = 1;
+        //m_rocket.nextTimetoFire = 1;
+        //m_rocket.MaxAmmo = 20;
+        //m_rocket.CurrentAmmo = 20;
+        //m_rocket.Discard = false;
 
         m_uzi.damage = 10;
         m_uzi.range = 20;

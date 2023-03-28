@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Este es el bueno xd
@@ -24,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sound")]
     public AudioSource [] m_AudioSource;
 
-    [Header("Analitics")]
-    public AnaliticManager m_AnaliticManager;
+    //[Header("Analitics")]
+    //public AnaliticManager m_AnaliticManager;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //m_AnaliticManager = GameObject.Find("AnaliticsManager").GetComponent<AnaliticManager>();
         //Debug.Log(m_Rigidbody.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.X) && SceneManager.GetActiveScene().name != "Title" && SceneManager.GetActiveScene().name != "FinishScene")
+        {
+            AnaliticManager.Instance.ShowAnalitics();
+        }
         Walk();
     
     }
@@ -54,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             m_Rigidbody.AddForce(new Vector3(0, m_JumpSpeed, 0), ForceMode.Impulse);
             m_AudioSource[0].Play();
             m_IsOnGround = false;
-            m_AnaliticManager.AddJump();
+            AnaliticManager.Instance.AddJump();
         }       
     }
 

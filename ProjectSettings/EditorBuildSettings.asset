@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene_Douglas.unity
     guid: 4741a145e0d95564986d4867f57bccf0
+  - enabled: 1
+    path: Assets/Scenes/Scene_Alek.unity
+    guid: 00b2ed53b9753b94f8c8b4964d816e26
+  - enabled: 1
+    path: Assets/Scenes/FinishScene.unity
+    guid: cc3fdd7545928db4d819c016237c7a35
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f7dba2d4ef858c949b28b1f7c133145e, type: 2}
