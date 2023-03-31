@@ -41,8 +41,6 @@ public class Rocket : MonoBehaviour
 
     public float GrapplingSpeed = 10;
 
-    private bool enableMovement;
-
     public float MinDistance = 1f;
 
     private void Start()
