@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Speed: 10
   m_Rigidbody: {fileID: 357449144}
   m_JumpSpeed: 5
-  WallRunSpeed: 10
+  WallRunSpeed: 20
   m_WeaponDisplay: {fileID: 357449154}
   m_AudioSource:
   - {fileID: 357449155}
