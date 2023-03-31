@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class AnaliticManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class AnaliticManager : MonoBehaviour
     public int m_MimidoTimes;
 
     public GameObject m_Analitics;
+
+    public string m_filename = "data.txt";
 
     void Awake()
     {
@@ -45,6 +48,16 @@ public class AnaliticManager : MonoBehaviour
         if (IsPlaying)
         {
             TimeInGame();
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        string filepath = Path.Combine(Application.persistentDataPath, m_filename);
+        using (StreamWriter writer = new StreamWriter(filepath))
+        {
+            writer.Write(Serialize());
+            writer.Write("\n");
         }
     }
 
@@ -89,5 +102,12 @@ public class AnaliticManager : MonoBehaviour
         TextMeshProUGUI Text = m_Analitics.GetComponent<TextMeshProUGUI>();
         Text.text = "Jump Times: " + m_JumpTimes + " Shoot Times: " + m_ShootTimes + " Special Shoot Times: " + m_SpecialShootTimes + " Change Card Times: " + m_ChangeCardTimes + " Playing Time: " + m_PlayTime + " Mimido Times: " + m_MimidoTimes;        
     }
-   
+
+
+    public string Serialize()
+    {
+        int Life = GameObject.Find("Player").GetComponent<PlayerManager>().m_PlayerLife;
+        return string.Format("{0},{1},{2},{3},{4},{5},{6}", m_JumpTimes, m_ShootTimes, m_SpecialShootTimes, m_ChangeCardTimes, m_PlayTime, m_MimidoTimes,Life);
+    }
+    
 }

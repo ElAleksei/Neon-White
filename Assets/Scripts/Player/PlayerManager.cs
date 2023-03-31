@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -20,10 +21,13 @@ public class PlayerManager : MonoBehaviour
     public float m_OverlayDelay;
     private float m_Timer;
 
+    public string m_filename = "data.txt";
+
     // Start is called before the first frame update
     void Start()
     {
         m_DamageOverlay.color = new Color(m_DamageOverlay.color.r, m_DamageOverlay.color.g, m_DamageOverlay.color.b, 0);
+        Desirialize();
     }
 
     // Update is called once per frame
@@ -94,4 +98,22 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void Desirialize()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, m_filename);
+
+        if (File.Exists(filePath))
+        {
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string data = reader.ReadToEnd();
+                string[] words = data.Split(',');
+                m_PlayerLife = int.Parse(words[6]);
+                ChangeLife();
+            }
+        }
+
+    }
+
+    
 }
